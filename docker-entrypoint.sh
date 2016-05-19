@@ -3,4 +3,4 @@
 
 
 
-exec "$@"
+exec "/usr/sbin/sshd" "-D"

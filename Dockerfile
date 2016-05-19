@@ -5,7 +5,7 @@ MAINTAINER schulz@seamlessinteraction.com
 VOLUME /rootpass
 
 RUN apt-get update
-RUN apt-get install -y openssh-server
+RUN apt-get install -y openssh-server curl
 
 RUN mkdir /var/run/sshd
 RUN chmod 0755 /var/run/sshd
@@ -17,8 +17,9 @@ EXPOSE 22
 
 RUN curl https://raw.githubusercontent.com/ThomasSI/sshd_docker/master/docker-entrypoint.sh
 
+
 COPY docker-entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD ["/usr/sbin/sshd -D"]
